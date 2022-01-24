@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -5,21 +6,24 @@ import java.util.TreeSet;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Set<String> produtos = new HashSet<>(); //implementacao mais rapida, mas nao tem ordenacao
-        Set<String> produtos2 = new TreeSet<>(); //Ordena os dados, mas possui ordenacao
-        Set<String> produtos3 = new LinkedHashSet<>(); //Mantem a ordem de insercao em que os itens foram inseridos
+        Set<Integer> a = new TreeSet<>(Arrays.asList(0,2,4,6,8,10));
+        Set<Integer> b = new TreeSet<>(Arrays.asList(5, 6, 7, 8, 9, 10));
 
-        produtos.add("TV");
-        produtos.add("Tablet");
-        produtos.add("Notebook");
-        produtos.add("Computador");
+        //union 
+        Set<Integer> c = new TreeSet<>(a);
+        c.addAll(b); //une os dois conjuntos
+        System.out.println(c);
 
-        produtos.remove("Tablet"); //Removendo um item do conjunto
 
-        produtos.removeIf(x -> x.contains("Notebook")); //Remove com condicao que recebe um predicado
+        //intersection
+        Set<Integer> d = new TreeSet<>(a);
+        d.retainAll(b); //retorna apenas os itens que se repetem nos dois conjuntos
+        System.out.println(d);
 
-        for (String string : produtos) {
-            System.out.println(produtos);
-        }
+        //difference
+        Set<Integer> e = new TreeSet<>(a);
+        e.removeAll(b); //remove do conjunto e todo mundo que esta no conjunto b
+        System.out.println(e);
+    
     }
 }
